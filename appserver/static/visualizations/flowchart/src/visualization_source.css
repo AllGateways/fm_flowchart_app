@@ -1,0 +1,20 @@
+/* Formatting for text element*/
+.meter-center-text {
+    font-size: 40px;
+    font-weight: 200;
+    font-family: "Helvetica Neue", Helvetica, sans-serif;
+}
+ 
+/* Center the main SVG in the page */
+.splunk-flowchart svg {
+    display: block;
+    margin: auto;
+}
+
+#flowchart_panel {
+    width: 70% !important;
+}
+
+#table_panel {
+    width: 30% !important;
+}

@@ -1,0 +1,118 @@
+<p><code>interactive</code> - Configure which of the default interactions with elements and links should be enabled.</p>
+
+<p>The property value defaults to <code>{ labelMove: false }</code>. This can be overwritten in three ways: with a boolean value, with an object specifying interaction keys, or with a function.</p>
+
+<p>If set to <code>false</code>, all interactions with elements and links are disabled. If set to <code>true</code>, all interactions are enabled.</p>
+
+<pre><code>// disable all interaction
+var paper = new joint.dia.Paper({
+    // ...
+    interactive: false,
+});
+
+// enable all interaction (including labelMove)
+var paper = new joint.dia.Paper({
+    // ...
+    interactive: true,
+});</code></pre>
+
+<p>Using an object, specific interactions may be disabled by assigning <code>false</code> to their corresponding property name. It is not necessary to pass <code>true</code> values; all omitted properties are assigned <code>true</code> by default. (Note that the passed object is not merged with the default; unless <code>labelMove</code> is explicitly excluded, it becomes enabled.) A full list of recognized interaction keys is provided below.</p>
+
+<pre><code>// disable arrowheadMove
+var paper = new joint.dia.Paper({
+    // ...
+    interactive: { arrowheadMove: false }
+});
+
+// disable all element interactions
+var paper = new joint.dia.Paper({
+    // ...
+    interactive: { elementMove: false, addLinkFromMagnet: false }
+});</code></pre>
+
+<p>If defined as a function, the function is passed <code>cellView</code> (the elementView/linkView the user is about to interact with) as the first parameter, followed by the name of the event (<code>'pointerdown'</code>, <code>'pointermove'</code>, ...) that triggered the interaction. The return value of the function is then interpreted in the way specified above (<code>false</code> causes all interaction to be disabled, an object disables specific interactions, etc.).</p>
+
+<pre><code>// disable link interactions for cellViews when a custom property is set
+var paper = new joint.dia.Paper({
+    // ...
+    interactive: function(cellView) {
+        if (cellView.model.get('disableLinkInteractions')) {
+            return {
+                arrowheadMove: false,
+                vertexMove: false,
+                vertexAdd: false,
+                vertexRemove: false,
+                labelMove: false,
+                useLinkTools: false
+            };
+        }
+
+        // otherwise
+        return true;
+    }
+});</code></pre>
+
+<p>The following tables present a list of all recognized interaction keys, followed by an example paper with the related interactive property set to <code>false</code>.</p>
+
+<p><b>Links:</b></p>
+
+<table>
+    <tr>
+        <th valign="top">arrowheadMove</th>
+        <td>
+            <iframe src="about:blank" data-src="./demo/dia/Paper/interactive/arrowheadMove.html"
+                    style="height: 94px; width: 250px;"></iframe>
+        </td>
+        <th valign="top">vertexMove</th>
+        <td>
+            <iframe src="about:blank" data-src="./demo/dia/Paper/interactive/vertexMove.html"
+                    style="height: 94px; width: 250px;"></iframe>
+        </td>
+    </tr>
+    <tr>
+        <th valign="top">vertexAdd</th>
+        <td>
+            <iframe src="about:blank" data-src="./demo/dia/Paper/interactive/vertexAdd.html"
+                    style="height: 94px; width: 250px;"></iframe>
+        </td>
+        <th valign="top">vertexRemove</th>
+        <td>
+            <iframe src="about:blank" data-src="./demo/dia/Paper/interactive/vertexRemove.html"
+                    style="height: 94px; width: 250px;"></iframe>
+        </td>
+    </tr>
+    <tr>
+        <th valign="top">labelMove</th>
+        <td>
+            <iframe src="about:blank" data-src="./demo/dia/Paper/interactive/labelMove.html"
+                    style="height: 94px; width: 250px;"></iframe>
+        </td>
+        <th valign="top">useLinkTools</th>
+        <td>
+            <iframe src="about:blank" data-src="./demo/dia/Paper/interactive/useLinkTools.html"
+                    style="height: 94px; width: 250px;"></iframe>
+        </td>
+    </tr>
+</table>
+
+<p><b>Elements:</b></p>
+
+<table>
+    <tr>
+        <th valign="top">elementMove</th>
+        <td>
+            <iframe src="about:blank" data-src="./demo/dia/Paper/interactive/elementMove.html"
+                    style="height: 94px; width: 250px;"></iframe>
+        </td>
+        <th valign="top">addLinkFromMagnet</th>
+        <td>
+            <iframe src="about:blank" data-src="./demo/dia/Paper/interactive/addLinkFromMagnet.html"
+                    style="height: 94px; width: 250px;"></iframe>
+        </td>
+    </tr>
+</table>
+
+<p>For comparison, the example below has all interactions on the link and on the elements enabled.</p>
+
+<iframe src="about:blank" data-src="./demo/dia/Paper/interactive/enableAll.html"
+        style="height: 94px; width: 400px;"></iframe>

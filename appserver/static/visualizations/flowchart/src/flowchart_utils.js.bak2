@@ -1,0 +1,42 @@
+define([
+    'jquery',
+    'underscore',
+    'jointjs'
+    ], function(
+        $,
+        _,
+        jointjs
+    ) {
+	flowchart_shape = jointjs.shapes.basic.Generic.extend({
+            markup: '<g class="rotatable"><g class="scalable"><rect/></g><text/></g>',
+            defaults: jointjs.util.deepSupplement({
+                type: 'basic.Rect',
+                attrs: {
+                    'rect': { 
+                        fill: 'lightgray',
+                        stroke: 'black',
+                        width: 35,
+                        height: 35},
+                     'text': {
+                        'font-size': 8,
+                        text: '',
+                        'ref-x': .5,
+                        'ref-y': .5,
+                        ref: 'rect',
+                        'y-alignment': 'middle',
+                        'x-alignment': 'middle',
+                        fill: 'lightgray',
+                        'font-family': 'Arial, helvetica, sans-serif' }
+		}
+                }, jointjs.shapes.basic.Generic.prototype.defaults)
+	});
+
+        flowchart_diamond = flowchart_shape.extend({
+            defaults: jointjs.util.deepSupplement({
+                attrs: {
+                    'rect': { transform: 'rotate(45)' }
+		}
+             }, jointjs.shapes.basic.Generic.prototype.defaults)
+
+        });
+})

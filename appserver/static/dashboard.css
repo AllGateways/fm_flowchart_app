@@ -1,0 +1,15 @@
+#flowchart_panel {
+    width: 60% !important;
+}
+
+#table_panel {
+    width: 40% !important;
+}
+
+.splukn-flowchart{
+  background: #FFED0A;
+}
+
+.splukn-flowchart-stencil {
+  background: #146DFF;
+}
