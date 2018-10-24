@@ -40,5 +40,5 @@ export = system
 # [visualizations/standin]
 # export = system
 
-[visualizations/flowchart]
+[visualizations/fm_flowchart]
 export = system
